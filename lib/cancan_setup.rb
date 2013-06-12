@@ -1,0 +1,2 @@
+module CancanSetup
+end
