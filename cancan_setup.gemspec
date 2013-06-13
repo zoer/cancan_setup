@@ -3,7 +3,7 @@ require "cancan_setup/version"
 
 Gem::Specification.new do |s|
   s.name        = "cancan_setup"
-  s.version     = CancanSetup::VERSION
+  s.version     = CanCanSetup::VERSION
   s.authors     = ["Oleg Yashchuk"]
   s.email       = ["oazoer@gmail.com"]
   s.homepage    = "http://github.com/zoer/cancan_setup"
