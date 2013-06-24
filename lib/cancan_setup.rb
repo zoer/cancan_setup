@@ -2,8 +2,13 @@ require "cancan_setup/setup_helper"
 require "cancan_setup/ability"
 
 module CanCanSetup
-  @@configs = []
-  mattr_accessor :configs
+  def self.configs
+    @@configs ||= []
+  end
+
+  def self.delegated_roles
+    @@delegated_roles ||= {}
+  end
 
   def self.setup(&block)
     setup_helper = SetupHelper.new

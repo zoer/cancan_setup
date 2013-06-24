@@ -28,7 +28,9 @@ module CanCanSetup
     end
 
     def has_any_role(*roles)
-      roles.flatten.map(&:to_sym).any? {|r| user.roles.include? r}
+      user_roles = get_inherited_roles(user.roles)
+      roles = [roles] unless roles.is_a? Array
+      roles.flatten.map(&:to_sym).any? {|r| user_roles.include? r}
     end
 
     # Rules for guest user
@@ -40,5 +42,32 @@ module CanCanSetup
     def authenticated(&block)
       self.instance_eval &block unless user.new_record?
     end
+
+    private
+
+    # Get inherited roles for user
+    def get_inherited_roles(roles)
+      roles = Set.new roles
+      begin
+      end while roles_recursion(roles)
+      roles
+    end
+
+    # Roles recursion matching
+    def roles_recursion(roles)
+      has_matches = false
+      CanCanSetup.delegated_roles.each_pair do |key, values|
+        if !values.nil? and roles.include?(key)
+          values.each do |val|
+            unless roles.include? val
+              has_matches = true
+              roles << val
+            end
+          end
+        end
+      end
+      has_matches
+    end
+
   end
 end
