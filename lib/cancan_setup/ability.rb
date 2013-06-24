@@ -28,9 +28,11 @@ module CanCanSetup
     end
 
     def has_any_role(*roles)
-      user_roles = get_inherited_roles(user.roles)
-      roles = [roles] unless roles.is_a? Array
       roles.flatten.map(&:to_sym).any? {|r| user_roles.include? r}
+    end
+
+    def user_roles
+      get_inherited_roles(user.roles.map{ |v| v.to_sym })
     end
 
     # Rules for guest user
