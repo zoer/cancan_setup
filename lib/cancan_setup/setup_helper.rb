@@ -22,7 +22,7 @@ module CanCanSetup
         if CanCanSetup.delegated_roles[key].nil?
           CanCanSetup.delegated_roles[key] = roles
         else
-          CanCanSetup.delegated_roles[key].merge! roles
+          CanCanSetup.delegated_roles[key] += roles
         end
       end
     end
