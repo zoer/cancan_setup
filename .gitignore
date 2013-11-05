@@ -8,3 +8,4 @@ test/dummy/.sass-cache
 .idea
 atlassian-ide-plugin.xml
 Gemfile.lock
+/cancan_setup.*
