@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{lib,spec}/**/*"] + ["MIT-LICENSE"] - ["Gemfile.lock"]
 
-  s.add_development_dependency 'rspec', '~> 2.13.0'
+  s.add_development_dependency 'rspec', '~> 2.14.0'
 end
